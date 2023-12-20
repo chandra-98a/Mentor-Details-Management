@@ -1,5 +1,6 @@
-package com.team.entity;
+package com.team.TeamService.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,18 +16,21 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="Teams")
+@Table(name="teams")
 public class Team {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	@Column(name="team_name",nullable=false)
 	private String teamName;
+	@Column(name="team_description",nullable=false)
 	private String teamDescription;
+	@Column(name="team_code",nullable=false)
 	private String teamCode;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTeamName() {
@@ -47,7 +51,17 @@ public class Team {
 	public void setTeamCode(String teamCode) {
 		this.teamCode = teamCode;
 	}
-	
+	public Team(Long id, String teamName, String teamDescription, String teamCode) {
+		super();
+		this.id = id;
+		this.teamName = teamName;
+		this.teamDescription = teamDescription;
+		this.teamCode = teamCode;
+	}
+	public Team() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 
 }
