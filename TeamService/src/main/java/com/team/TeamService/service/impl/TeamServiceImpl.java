@@ -26,7 +26,7 @@ public class TeamServiceImpl implements TeamService1{
 	}
 
 
-
+// save method
 	@Override
 	public TeamDto saveTeam(TeamDto teamDto) {
 		//convert team dto to team jpa entity
@@ -56,5 +56,25 @@ public class TeamServiceImpl implements TeamService1{
 		
 		
 	}
+
+	//getTeamByCode method
+
+@Override
+public TeamDto getTeamByCode(String teamCode) {
+	//team is a jpa entity
+	Team team=teamRepository.findByTeamCode(teamCode);
+	//convert team jpa entity into dto object
+	TeamDto teamDto=new TeamDto(
+			team.getId(),
+			team.getTeamName(),
+			team.getTeamDescription(),
+			team.getTeamCode()
+			);
+	
+	return teamDto;
+}
+
+
+	
 
 }

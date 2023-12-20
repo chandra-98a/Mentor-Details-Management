@@ -3,6 +3,8 @@ package com.team.TeamService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +31,18 @@ public class TeamController {
 	@PostMapping
 	public ResponseEntity<TeamDto> saveTeam(@RequestBody TeamDto teamDto){ 
 		//requestbody annotation internally uses http message converters 
-		//and it will convert json into java object.
+				//and it will convert json into java object.
 		TeamDto savedTeamDto=teamService1.saveTeam(teamDto);
 		return new ResponseEntity<>(savedTeamDto,HttpStatus.CREATED);
 		//ResponseEntity  class take two arguments javaobject and http status
+	}
+	
+	//build getTeamByCode rest api
+	
+	@GetMapping("/{teamCode}")
+	public ResponseEntity<TeamDto> getTeamByCode(@PathVariable String teamCode){
+		TeamDto teamDto=teamService1.getTeamByCode(teamCode);
+		return  new ResponseEntity<>(teamDto,HttpStatus.OK);
 	}
 
 	

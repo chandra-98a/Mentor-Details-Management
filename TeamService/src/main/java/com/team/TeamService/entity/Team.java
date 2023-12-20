@@ -58,6 +58,11 @@ public class Team {
 		this.teamDescription = teamDescription;
 		this.teamCode = teamCode;
 	}
+	public Team() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 
