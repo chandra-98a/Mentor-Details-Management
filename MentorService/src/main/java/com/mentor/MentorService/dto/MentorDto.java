@@ -1,33 +1,22 @@
-package com.mentor.MentorService.entity;
+package com.mentor.MentorService.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-@Entity
-@Table(name="mentors_list")
-public class Mentor {
-	  @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
-	  @Column(nullable=false)
+@AllArgsConstructor
+public class MentorDto {
+	
+	  private Long id;
 	    private String firstName;
-	  @Column(nullable=false)
 	    private String lastName;
-	    @Column(nullable = false, unique = true)
 	    private String email;
-	    //Getters and Setters
+	   
+//Getters and setters
 		public Long getId() {
 			return id;
 		}
@@ -52,18 +41,18 @@ public class Mentor {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-	    //constructors
-		public Mentor(Long id, String firstName, String lastName, String email) {
+//constructors
+		public MentorDto(Long id, String firstName, String lastName, String email) {
 			super();
 			this.id = id;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
 		}
-		public Mentor() {
+		public MentorDto() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 		
-	    
+		
 }
