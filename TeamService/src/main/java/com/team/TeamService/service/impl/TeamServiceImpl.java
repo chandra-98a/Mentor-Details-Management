@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.TeamService.entity.Team;
 import com.team.TeamService.entity.TeamDto;
+import com.team.TeamService.mapper.TeamMapper;
 import com.team.TeamService.repository.TeamRepository;
 import com.team.TeamService.service.TeamService1;
 
@@ -29,30 +30,20 @@ public class TeamServiceImpl implements TeamService1{
 // save method
 	@Override
 	public TeamDto saveTeam(TeamDto teamDto) {
-		//convert team dto to team jpa entity
-		
-		Team team=new Team(
-				teamDto.getId(),
-				teamDto.getTeamName(),
-				teamDto.getTeamDescription(),
-				teamDto.getTeamCode()
-				);
+		//convert team dto to team jpa entity-->refer TeamMapper class
+		//mapping dto to entity
+		Team team=TeamMapper.mapToTeam(teamDto);
 		
 		Team savedTeam=teamRepository.save(team);
 		// save(team)= store the jpa entity obj to database
 		
 		
 		//savedTeam obj is in the form of jpa entity 
-		// need to convert it into dto object savedTeamDtoh
-		TeamDto savedTeamDto=new TeamDto(
-				savedTeam.getId(),
-				savedTeam.getTeamName(),
-				savedTeam.getTeamDescription(),
-				savedTeam.getTeamCode()
-				);
+		// need to convert it into dto object savedTeamDto-->refer TeamMapper class
+		TeamDto savedTeamDto=TeamMapper.mapToTeamDto(savedTeam);
+		
+		
 		return savedTeamDto;
-		
-		
 		
 		
 	}
@@ -64,12 +55,7 @@ public TeamDto getTeamByCode(String teamCode) {
 	//team is a jpa entity
 	Team team=teamRepository.findByTeamCode(teamCode);
 	//convert team jpa entity into dto object
-	TeamDto teamDto=new TeamDto(
-			team.getId(),
-			team.getTeamName(),
-			team.getTeamDescription(),
-			team.getTeamCode()
-			);
+	TeamDto teamDto=TeamMapper.mapToTeamDto(team);
 	
 	return teamDto;
 }
