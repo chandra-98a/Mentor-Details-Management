@@ -1,6 +1,7 @@
 package com.mentor.MentorService.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mentor.MentorService.dto.APIResponseDto;
 import com.mentor.MentorService.dto.MentorDto;
 import com.mentor.MentorService.service.MentorService1;
 
@@ -34,9 +36,9 @@ public class MentorController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<MentorDto> MentorById(@PathVariable Long id){
-		MentorDto mentorDto = mentorService1.getMentorById(id);
-        return new ResponseEntity<>(mentorDto, HttpStatus.OK);
+	public ResponseEntity<APIResponseDto> MentorById(@PathVariable Long id){
+		APIResponseDto apiResponseDto = mentorService1.getMentorById(id);
+        return new ResponseEntity<>(apiResponseDto, HttpStatus.OK);
 	}
 	
 }

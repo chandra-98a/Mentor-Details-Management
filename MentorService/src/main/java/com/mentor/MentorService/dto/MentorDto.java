@@ -15,6 +15,7 @@ public class MentorDto {
 	    private String firstName;
 	    private String lastName;
 	    private String email;
+	    private String teamCode;
 	   
 //Getters and setters
 		public Long getId() {
@@ -41,18 +42,27 @@ public class MentorDto {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-//constructors
-		public MentorDto(Long id, String firstName, String lastName, String email) {
+		
+        public String getTeamCode() {
+			return teamCode;
+		}
+		public void setTeamCode(String teamCode) {
+			this.teamCode = teamCode;
+		}
+		//constructor
+		public MentorDto(Long id, String firstName, String lastName, String email, String teamCode) {
 			super();
 			this.id = id;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
+			this.teamCode = teamCode;
 		}
 		public MentorDto() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
+		
 		
 		
 }

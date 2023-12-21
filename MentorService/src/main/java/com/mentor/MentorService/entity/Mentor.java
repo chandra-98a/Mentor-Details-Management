@@ -27,6 +27,9 @@ public class Mentor {
 	    private String lastName;
 	    @Column(nullable = false, unique = true)
 	    private String email;
+	    @Column(nullable =false)
+	    private String teamCode;
+	    
 	    //Getters and Setters
 		public Long getId() {
 			return id;
@@ -52,13 +55,22 @@ public class Mentor {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-	    //constructors
-		public Mentor(Long id, String firstName, String lastName, String email) {
+		
+		
+	    public String getTeamCode() {
+			return teamCode;
+		}
+		public void setTeamCode(String teamCode) {
+			this.teamCode = teamCode;
+		}
+		//constructors
+		public Mentor(Long id, String firstName, String lastName, String email, String teamCode) {
 			super();
 			this.id = id;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
+			this.teamCode = teamCode;
 		}
 		public Mentor() {
 			super();
