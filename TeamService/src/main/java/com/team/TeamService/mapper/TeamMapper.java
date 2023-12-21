@@ -5,7 +5,7 @@ import com.team.TeamService.entity.TeamDto;
 
 public class TeamMapper {
 	
-	//Mapper entity automatically maps the objects from one model to another, thus reducing the need for manual mapping code. 
+	//Mapper entity manually maps the objects from one model to another, thus reducing the need for manual mapping code. 
 	//This can save a lot of time and effort, and can also help to reduce the risk of errors.
 	
 	

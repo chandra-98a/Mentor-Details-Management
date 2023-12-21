@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.TeamService.entity.Team;
 import com.team.TeamService.entity.TeamDto;
-
+import com.team.TeamService.mapper.AutoTeamMapper;
 import com.team.TeamService.repository.TeamRepository;
 import com.team.TeamService.service.TeamService1;
 
@@ -47,9 +47,10 @@ public class TeamServiceImpl implements TeamService1{
 		//Team team=TeamMapper.mapToTeam(teamDto);
 		
 		//using model mapper
-		Team team=modelMapper.map(teamDto,Team.class);
+		//Team team=modelMapper.map(teamDto,Team.class);
 		
-		
+		//using MapStruct
+		Team team=AutoTeamMapper.MAPPER.mapToTeam(teamDto);
 		
 		Team savedTeam=teamRepository.save(team);
 		// save(team)= store the jpa entity obj to database
@@ -58,8 +59,13 @@ public class TeamServiceImpl implements TeamService1{
 		//  convert savedTeam into savedTeamDto-->refer TeamMapper class
 		//TeamDto savedTeamDto=TeamMapper.mapToTeamDto(savedTeam);
 		
-		TeamDto savedTeamDto=modelMapper.map(savedTeam,TeamDto.class);
 		
+		//using modelmapper
+		//TeamDto savedTeamDto=modelMapper.map(savedTeam,TeamDto.class);
+		
+		
+		//using mapstruct
+		TeamDto savedTeamDto=AutoTeamMapper.MAPPER.mapToTeamDto(savedTeam);
 		return savedTeamDto;
 		
 		
@@ -74,7 +80,13 @@ public TeamDto getTeamByCode(String teamCode) {
 	//convert team jpa entity into dto object
 	//TeamDto teamDto=TeamMapper.mapToTeamDto(team);
 	
-	TeamDto teamDto=modelMapper.map(team, TeamDto.class);
+	//using modelmapper
+	//TeamDto teamDto=modelMapper.map(team, TeamDto.class);
+	
+	
+	//using mapstruct
+	
+	TeamDto teamDto=AutoTeamMapper.MAPPER.mapToTeamDto(team);
 	
 	return teamDto;
 }
