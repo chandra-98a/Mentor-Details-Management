@@ -49,6 +49,10 @@ public class TeamDto {
 		this.teamDescription = teamDescription;
 		this.teamCode = teamCode;
 	}
+	public TeamDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 
