@@ -1,5 +1,8 @@
 package com.mentor.MentorService.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -59,7 +62,7 @@ public class MentorServiceImpl implements MentorService1{
 		return savedMentorDto;
 
 	}
-//get method
+//get-by-id method
 	@Override
 	public APIResponseDto getMentorById(Long id) {
 		Mentor mentor=mentorRepository.findById(id).get();
@@ -122,5 +125,25 @@ public class MentorServiceImpl implements MentorService1{
 	        // Return the updated DTO object
 	        return updatedMentorDto;
 	  
+	}
+//get all mentors
+	@Override
+	public List<MentorDto> getAllMentors() {
+	    List<Mentor> allMentors = mentorRepository.findAll();
+	    List<MentorDto> allMentorDtos = new ArrayList<>();
+
+	    // Mapping Mentor entities to MentorDto objects
+	    for (Mentor mentor : allMentors) {
+	        MentorDto mentorDto = new MentorDto(
+	            mentor.getId(),
+	            mentor.getFirstName(),
+	            mentor.getLastName(),
+	            mentor.getEmail(),
+	            mentor.getTeamCode()
+	        );
+	        allMentorDtos.add(mentorDto);
+	    }
+
+	    return allMentorDtos;
 	}
 }

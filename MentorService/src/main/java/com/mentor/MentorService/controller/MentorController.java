@@ -1,5 +1,7 @@
 package com.mentor.MentorService.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -42,6 +44,13 @@ public class MentorController {
 		APIResponseDto apiResponseDto = mentorService1.getMentorById(id);
         return new ResponseEntity<>(apiResponseDto, HttpStatus.OK);
 	}
+	
+	@GetMapping("/mentorslist")
+	public ResponseEntity<List<MentorDto>> getAllMentors(){
+		List<MentorDto> mentorDto=mentorService1.getAllMentors();
+		return new ResponseEntity<>(mentorDto, HttpStatus.OK);
+	}
+	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<MentorDto> updateMentor(
 			@RequestBody MentorDto mentorDto,@PathVariable Long id){
@@ -50,4 +59,5 @@ public class MentorController {
 		
 		return new ResponseEntity<>(updatedMentor, HttpStatus.OK);
 	}
+	
 }
