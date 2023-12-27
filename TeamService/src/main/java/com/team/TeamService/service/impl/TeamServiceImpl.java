@@ -2,6 +2,7 @@ package com.team.TeamService.service.impl;
 
 import org.modelmapper.ModelMapper;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,7 @@ public class TeamServiceImpl implements TeamService1{
 	//inject team repository dependency
 	private TeamRepository teamRepository;
 	
-	//inject model mapper 
-	private ModelMapper modelMapper;
+	
 	
 	
 	
@@ -31,7 +31,6 @@ public class TeamServiceImpl implements TeamService1{
 	public TeamServiceImpl(TeamRepository teamRepository,ModelMapper modelMapper) {
 		super();
 		this.teamRepository = teamRepository;
-		this.modelMapper = modelMapper;
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.mentor.MentorService.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -81,5 +82,45 @@ public class MentorServiceImpl implements MentorService1{
 		apiResponseDto.setMentor(mentorDto);
 		apiResponseDto.setTeam(teamDto);
 		return apiResponseDto;
+	}
+//put method
+
+	@Override
+	public MentorDto updateMentor(MentorDto mentorDto) {
+	    // Convert DTO to entity
+		Mentor mentor=new Mentor(
+				mentorDto.getId(),
+				mentorDto.getFirstName(),
+				mentorDto.getLastName(),
+				mentorDto.getEmail(),
+				mentorDto.getTeamCode()
+				);
+	    Mentor existingMentor = mentorRepository.findById(mentor.getId()).get();
+
+	  
+	            
+	        
+	        
+	        // Update the fields
+	    existingMentor.setFirstName(mentorDto.getFirstName());
+	        existingMentor.setLastName(mentorDto.getLastName());
+	        existingMentor.setEmail(mentorDto.getEmail());
+	        existingMentor.setTeamCode(mentorDto.getTeamCode());
+
+	        // Save the changes to the database
+	        Mentor updatedMentor = mentorRepository.save(existingMentor);
+
+	        // Convert the updated entity to DTO
+	        MentorDto updatedMentorDto = new MentorDto(
+	            updatedMentor.getId(),
+	            updatedMentor.getFirstName(),
+	            updatedMentor.getLastName(),
+	            updatedMentor.getEmail(),
+	            updatedMentor.getTeamCode()
+	        );
+
+	        // Return the updated DTO object
+	        return updatedMentorDto;
+	  
 	}
 }

@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mentor.MentorService.dto.APIResponseDto;
 import com.mentor.MentorService.dto.MentorDto;
 import com.mentor.MentorService.service.MentorService1;
-
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/api/mentors")
 public class MentorController {
@@ -36,9 +38,16 @@ public class MentorController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<APIResponseDto> MentorById(@PathVariable Long id){
+	public ResponseEntity<APIResponseDto> mentorById(@PathVariable Long id){
 		APIResponseDto apiResponseDto = mentorService1.getMentorById(id);
         return new ResponseEntity<>(apiResponseDto, HttpStatus.OK);
 	}
-	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<MentorDto> updateMentor(
+			@RequestBody MentorDto mentorDto,@PathVariable Long id){
+		mentorDto.setId(id);
+		MentorDto updatedMentor=mentorService1.updateMentor(mentorDto);
+		
+		return new ResponseEntity<>(updatedMentor, HttpStatus.OK);
+	}
 }
