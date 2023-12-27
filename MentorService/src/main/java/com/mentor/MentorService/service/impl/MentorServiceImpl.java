@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.mentor.MentorService.entity.Mentor;
 import com.mentor.MentorService.mapper.MentorMapper;
@@ -24,16 +25,18 @@ public class MentorServiceImpl implements MentorService1{
 	private MentorRepository mentorRepository;
 	
 	//inject rest template dependency step3
-	private RestTemplate restTemplate;
+	//private RestTemplate restTemplate;
 
+	private WebClient webClient;
 	
 	//Autowiring
 	
 	@Autowired
-	public MentorServiceImpl(MentorRepository mentorRepository,RestTemplate restTemplate) {
+	public MentorServiceImpl(MentorRepository mentorRepository,WebClient webClient) {
 		super();
 		this.mentorRepository = mentorRepository;
-		this.restTemplate=restTemplate;
+		//this.restTemplate=restTemplate;
+		this.webClient=webClient;
 	}
 	
 //save method
@@ -55,10 +58,18 @@ public class MentorServiceImpl implements MentorService1{
 	public APIResponseDto getMentorById(Long id) {
 		Mentor mentor=mentorRepository.findById(id).get();
 		 //step3
-		 ResponseEntity<TeamDto> responseEntity = restTemplate.getForEntity("http://localhost:8082/api/teams/" + mentor.getTeamCode(),
-               TeamDto.class);
-
-	    TeamDto teamDto=responseEntity.getBody();
+			/*
+			 * ResponseEntity<TeamDto> responseEntity =
+			 * restTemplate.getForEntity("http://localhost:8082/api/teams/" +
+			 * mentor.getTeamCode(), TeamDto.class);
+			 * 
+			 * TeamDto teamDto=responseEntity.getBody();
+			 */
+		TeamDto teamDto=webClient.get()
+				.uri("http://localhost:8082/api/teams/" + mentor.getTeamCode())
+				.retrieve()
+				.bodyToMono(TeamDto.class)
+				.block();
 		
 		MentorDto mentorDto=MentorMapper.mapToMentorDto(mentor);
 		//step3
