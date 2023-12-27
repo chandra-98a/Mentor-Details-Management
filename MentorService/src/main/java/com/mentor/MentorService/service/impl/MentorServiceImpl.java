@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.mentor.MentorService.entity.Mentor;
+import com.mentor.MentorService.mapper.MentorMapper;
 import com.mentor.MentorService.dto.APIResponseDto;
 
 import com.mentor.MentorService.dto.MentorDto;
@@ -40,25 +41,12 @@ public class MentorServiceImpl implements MentorService1{
 	public MentorDto saveMentor(MentorDto mentorDto) {
 		// convert dto to entity 
 		
-		Mentor mentor=new Mentor(
-				mentorDto.getId(),
-				mentorDto.getFirstName(),
-				mentorDto.getLastName(),
-				mentorDto.getEmail(),
-				mentorDto.getTeamCode()
-				);
+		Mentor mentor=MentorMapper.mapToMentor(mentorDto);
 		Mentor savedMentor=mentorRepository.save(mentor);
 		
 		//convert entity to dto
 		
-		MentorDto savedMentorDto = new MentorDto(
-				savedMentor.getId(),
-				savedMentor.getFirstName(),
-				savedMentor.getLastName(),
-				savedMentor.getEmail(),
-				savedMentor.getTeamCode()
-				
-				);
+		MentorDto savedMentorDto = MentorMapper.mapToMentorDto(savedMentor);
 		return savedMentorDto;
 
 	}
@@ -72,14 +60,7 @@ public class MentorServiceImpl implements MentorService1{
 
 	    TeamDto teamDto=responseEntity.getBody();
 		
-		MentorDto mentorDto=new MentorDto(
-				
-				mentor.getId(),
-				mentor.getFirstName(),
-				mentor.getLastName(),
-				mentor.getEmail(),
-				mentor.getTeamCode()
-				);
+		MentorDto mentorDto=MentorMapper.mapToMentorDto(mentor);
 		//step3
 		APIResponseDto apiResponseDto=new APIResponseDto();
 		apiResponseDto.setMentor(mentorDto);
@@ -91,18 +72,8 @@ public class MentorServiceImpl implements MentorService1{
 	@Override
 	public MentorDto updateMentor(MentorDto mentorDto) {
 	    // Convert DTO to entity
-		Mentor mentor=new Mentor(
-				mentorDto.getId(),
-				mentorDto.getFirstName(),
-				mentorDto.getLastName(),
-				mentorDto.getEmail(),
-				mentorDto.getTeamCode()
-				);
+		Mentor mentor=MentorMapper.mapToMentor(mentorDto);
 	    Mentor existingMentor = mentorRepository.findById(mentor.getId()).get();
-
-	  
-	            
-	        
 	        
 	        // Update the fields
 	    existingMentor.setFirstName(mentorDto.getFirstName());
@@ -114,13 +85,7 @@ public class MentorServiceImpl implements MentorService1{
 	        Mentor updatedMentor = mentorRepository.save(existingMentor);
 
 	        // Convert the updated entity to DTO
-	        MentorDto updatedMentorDto = new MentorDto(
-	            updatedMentor.getId(),
-	            updatedMentor.getFirstName(),
-	            updatedMentor.getLastName(),
-	            updatedMentor.getEmail(),
-	            updatedMentor.getTeamCode()
-	        );
+	        MentorDto updatedMentorDto = MentorMapper.mapToMentorDto(updatedMentor);
 
 	        // Return the updated DTO object
 	        return updatedMentorDto;
@@ -134,13 +99,7 @@ public class MentorServiceImpl implements MentorService1{
 
 	    // Mapping Mentor entities to MentorDto objects
 	    for (Mentor mentor : allMentors) {
-	        MentorDto mentorDto = new MentorDto(
-	            mentor.getId(),
-	            mentor.getFirstName(),
-	            mentor.getLastName(),
-	            mentor.getEmail(),
-	            mentor.getTeamCode()
-	        );
+	        MentorDto mentorDto = MentorMapper.mapToMentorDto(mentor);
 	        allMentorDtos.add(mentorDto);
 	    }
 
