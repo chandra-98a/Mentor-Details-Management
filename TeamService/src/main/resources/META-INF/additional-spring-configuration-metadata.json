@@ -1,5 +1,72 @@
-{"properties": [{
-  "name": "Amapstruct.verbose",
-  "type": "java.lang.String",
-  "description": "A description for 'Amapstruct.verbose'"
-}]}
+{"properties": [
+  {
+    "name": "Amapstruct.verbose",
+    "type": "java.lang.String",
+    "description": "A description for 'Amapstruct.verbose'"
+  },
+  {
+    "name": "eureka.instance.client.serviceUrl.defaultzone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serviceUrl.defaultzone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.instance.client.serverUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.client.serverUrl.defaultZone'"
+  }
+]}
