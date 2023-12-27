@@ -17,6 +17,7 @@ import com.mentor.MentorService.dto.APIResponseDto;
 import com.mentor.MentorService.dto.MentorDto;
 import com.mentor.MentorService.dto.TeamDto;
 import com.mentor.MentorService.repository.MentorRepository;
+import com.mentor.MentorService.service.APIClient;
 import com.mentor.MentorService.service.MentorService1;
 @Service
 public class MentorServiceImpl implements MentorService1{
@@ -27,16 +28,19 @@ public class MentorServiceImpl implements MentorService1{
 	//inject rest template dependency step3
 	//private RestTemplate restTemplate;
 
-	private WebClient webClient;
+	//private WebClient webClient;
+	private APIClient apiClient;
 	
 	//Autowiring
 	
 	@Autowired
-	public MentorServiceImpl(MentorRepository mentorRepository,WebClient webClient) {
+	public MentorServiceImpl(MentorRepository mentorRepository,APIClient apiClient) {
 		super();
 		this.mentorRepository = mentorRepository;
 		//this.restTemplate=restTemplate;
-		this.webClient=webClient;
+		//this.webClient=webClient;
+		this.apiClient=apiClient;
+		
 	}
 	
 //save method
@@ -65,12 +69,11 @@ public class MentorServiceImpl implements MentorService1{
 			 * 
 			 * TeamDto teamDto=responseEntity.getBody();
 			 */
-		TeamDto teamDto=webClient.get()
-				.uri("http://localhost:8082/api/teams/" + mentor.getTeamCode())
-				.retrieve()
-				.bodyToMono(TeamDto.class)
-				.block();
-		
+			/*
+			 * TeamDto teamDto=webClient.get() .uri("http://localhost:8082/api/teams/" +
+			 * mentor.getTeamCode()) .retrieve() .bodyToMono(TeamDto.class) .block();
+			 */
+		TeamDto teamDto=apiClient.getTeamByCode(mentor.getTeamCode());
 		MentorDto mentorDto=MentorMapper.mapToMentorDto(mentor);
 		//step3
 		APIResponseDto apiResponseDto=new APIResponseDto();
