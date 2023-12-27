@@ -12,4 +12,6 @@ APIResponseDto getMentorById(Long id);
 MentorDto updateMentor(MentorDto mentorDto);
 
 List<MentorDto> getAllMentors();
+
+void deleteMentor(Long id);
 }

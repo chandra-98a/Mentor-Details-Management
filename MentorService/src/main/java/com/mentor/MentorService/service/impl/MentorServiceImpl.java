@@ -146,4 +146,9 @@ public class MentorServiceImpl implements MentorService1{
 
 	    return allMentorDtos;
 	}
+//delete method
+	@Override
+	public void deleteMentor(Long id) {
+	mentorRepository.deleteById(id);
+	}
 }
